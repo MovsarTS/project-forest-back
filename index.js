@@ -9,6 +9,7 @@ app.use(cors());
 app.use(express.static(path.join(__dirname, "public")));
 
 app.use(require('./routes/worker.route'))
+app.use(require('./routes/user.route'))
 
 const start = async () => {
   try {
