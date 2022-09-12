@@ -12,6 +12,7 @@ app.use(require('./routes/worker.route'))
 app.use(require('./routes/product.route'))
 app.use(require('./routes/service.route'))
 app.use(require('./routes/user.route'))
+app.use(require('./routes/request.route'))
 
 const start = async () => {
   try {
