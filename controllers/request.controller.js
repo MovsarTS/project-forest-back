@@ -1,3 +1,4 @@
+const { default: mongoose } = require('mongoose')
 const Request = require('../models/Request.model')
 
 module.exports.requestController = {
@@ -13,7 +14,7 @@ module.exports.requestController = {
     },
 
     getRequests: async (req, res) => {
-        const data = await Request.find()
+        const data = await Request.find().populate('workDescription')
         res.json(data)
     }
 }
