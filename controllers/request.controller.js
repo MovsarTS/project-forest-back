@@ -16,5 +16,10 @@ module.exports.requestController = {
     getRequests: async (req, res) => {
         const data = await Request.find().populate('workDescription')
         res.json(data)
+    },
+
+    deleteRequest: async (req, res) => {
+        const data = await Request.findByIdAndDelete(req.params.id)
+        res.json(data)
     }
 }
