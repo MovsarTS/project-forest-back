@@ -15,4 +15,24 @@ module.exports.productController = {
         const data = await Product.find()
         res.json(data)
     },
+    countPlus: async (req, res) => {
+        try {
+            const product = await Product.findByIdAndUpdate(req.body.productId, {
+                $inc : {countInBasket: 1}
+            })
+            res.json(product)
+        } catch (e) {
+            res.json(e)
+        }
+      },
+      countMinus: async (req, res) => {
+        try {
+            const product = await Product.findByIdAndUpdate(req.body.productId, {
+                $inc : {countInBasket: -1}
+            })
+            res.json(product)
+        } catch (e) {
+            res.json(e)
+        }
+      }
 }

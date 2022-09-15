@@ -1,6 +1,7 @@
 const User = require("../models/User.model");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
+const Product = require("../models/Product.model");
 
 module.exports.usersController = {
   addUser: async (req, res) => {
@@ -65,7 +66,10 @@ module.exports.usersController = {
       const user = await User.findByIdAndUpdate(req.body.userId, {
         $pull: { basket: req.body.productId },
       }).populate("basket");
-      res.json(user);
+      const product = await Product.findByIdAndUpdate(req.body.productId, {
+        countInBasket: 1
+      })
+      res.json(product);
     } catch (e) {
       res.json(e);
     }
@@ -78,4 +82,5 @@ module.exports.usersController = {
         res.json(e)
     }
   },
+
 };
