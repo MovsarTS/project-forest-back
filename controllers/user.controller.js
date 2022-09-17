@@ -74,6 +74,16 @@ module.exports.usersController = {
       res.json(e);
     }
   },
+  removeAllBasket: async (req, res) => {
+    try {
+      const user = await User.findByIdAndUpdate(req.body.userId, {
+        $set: { basket: []}
+      }).populate('basket')
+      res.json(user)
+    } catch (e) {
+      res.json(e)
+    }
+  },
   getBasket: async (req, res) => {
     try {
       const user = await User.findById(req.params.userId).populate("basket");
